@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ===== Iconscout CSS ===== -->
-    
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-    <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="log.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fontawesome-free-5.15.3-web/css/all.min.css">
@@ -34,11 +30,6 @@
         <div class="search-box">
             <input type="search" placeholder="search here">
         </div>
-        <!-- shoping cart -->
-
-        
-
-        <!-- shoping cart ended  -->
 
 
 
@@ -175,31 +166,36 @@
 
         });
         form2.addEventListener('submit', (e) => {
-    e.preventDefault();
+        e.preventDefault();
 
-    if (!isNameValid(nom.value)) {
-        errorname.innerText = "le nom est invalide";
-    }
+        if (!isNameValid(nom.value)) {
+            errorname.innerText = "le nom est invalide";
+        }
 
-    if (!isPasswordValid(password2.value)) {
-        errorElement2.innerText = "Le mot de passe doit comporter au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
-        password2.value = '';
-        confirmpass2.value = ''; // Clear the confirmation password field
-    } else if (password2.value !== confirmpass2.value) {
-        errorElement3.innerText = 'le mot de passe ne correspond pas';
-        confirmpass2.value = ''; // Clear the confirmation password field
-    } else {
-        // If the password is valid, show the alert and clear the fields
-        alert("Inscription confirmée");
-        password2.value = '';
-        confirmpass2.value = '';
-        email2.value = '';
-        nom.value = '';
-        errorElement2.innerText = '';
-        errorElement3.innerText = '';
-        errorname.innerText = '';
-    }
-});
+        if (!isPasswordValid(password2.value)) {
+            errorElement2.innerText = "Le mot de passe doit comporter au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
+            password2.value = '';
+            confirmpass2.value = ''; 
+        } else if (password2.value !== confirmpass2.value) {
+            errorElement3.innerText = 'le mot de passe ne correspond pas';
+            confirmpass2.value = ''; 
+        } else {
+            if(acceptTerms.checked){
+                alert("Inscription confirmée");
+                password2.value = '';
+                confirmpass2.value = '';
+                email2.value = '';
+                nom.value = '';
+                errorElement2.innerText = '';
+                errorElement3.innerText = '';
+                errorname.innerText = '';
+            }
+            else{
+                alert("tu peut coche le check de accept all terms and changes");
+            }
+            
+        }
+    });
 
 
         function isPasswordValid(pass) {
