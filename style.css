@@ -58,7 +58,7 @@ html{
     padding: 1rem 3rem;
 }
 #menu-bar{
-    /* display: none; */
+    display: none;
 }
 
 .search-box.active{

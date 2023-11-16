@@ -46,15 +46,17 @@
     <div class="container">
         <div class="forms">
             <div class="form login">
+                
                 <span class="title">Login</span>
 
-                <form action="#">
+                <form action="#" id="form">
                     <div class="input-field">
-                        <input type="text" placeholder="Enter your email" required>
+                        <input type="email" name="email" id="email" placeholder="Enter your email" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Enter your password" required>
+                        <div id="error"></div>
+                        <input type="password" id="password" class="password" placeholder="Enter your password" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
@@ -69,7 +71,7 @@
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" value="Login">
+                        <input type="submit" value="Login">
                     </div>
                 </form>
 
@@ -84,21 +86,24 @@
             <div class="form signup">
                 <span class="title">Registration</span>
 
-                <form action="#">
+                <form action="#" id="form2">
                     <div class="input-field">
-                        <input type="text" placeholder="Enter your name" required>
+                        <div id="errorname"></div>
+                        <input type="text" id="name" placeholder="Enter your name" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="Enter your email" required>
+                        <input type="email"  name="email" id="email2" placeholder="Enter your email" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Create a password" required>
+                        <div id="error2"></div>
+                        <input type="password" class="password" id="password2" placeholder="Create a password" required>
                         <i class="uil uil-lock icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Confirm a password" required>
+                        <div id="error3"></div>
+                        <input type="password" class="password" id="confirmpass2" placeholder="Confirm a password" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
@@ -111,7 +116,7 @@
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" value="Signup">
+                        <input type="submit" value="Signup">
                     </div>
                 </form>
 
@@ -126,5 +131,90 @@
 
      <script src="log.js"></script> 
      <script src="script.js"></script>
+     <script>
+        email=document.getElementById('email');
+        nom =document.getElementById("name");
+        password2=document.getElementById("password2");
+        confirmpass2=document.getElementById("confirmpass2");
+        password=document.getElementById('password');
+        form=document.getElementById('form');
+        form2=document.getElementById("form2");
+        const errorEelement=document.getElementById('error');
+        errorEelement.style.color='red';
+        const errorElement2=document.getElementById('error2');
+        errorElement2.style.color='red';
+       email2=document.getElementById('email2');
+        const errorElement3=document.getElementById('error3');
+        errorElement3.style.color='red';
+        nameerror=document.getElementById('errorname');
+        nameerror.style.color='red';
+        var rememberMeCheckbox = document.getElementById("logCheck");
+        var acceptTerms=document.getElementById("termCon");
+        const errorname=document.getElementById('errorname');
+        errorname.style.color='red';
+        form.addEventListener('submit' ,(e)=>{
+            let messages=[];
+            e.preventDefault();
+            if(!isPasswordValid(password.value)){
+                messages.push("Le mot de passe doit comporter au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.");
+                password.value='';
+            }else if(isPasswordValid(password.value)&& rememberMeCheckbox.checked){
+                messages.length=0;
+                errorEelement.innerText=messages.join(', ');
+                password.value='';
+                email.value='';
+
+                alert("registration confirmed");
+            }
+            
+            if(messages.length>=0){
+                e.preventDefault();
+                errorEelement.innerText=messages.join(', ');
+                
+            }
+
+        });
+        form2.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (!isNameValid(nom.value)) {
+        errorname.innerText = "le nom est invalide";
+    }
+
+    if (!isPasswordValid(password2.value)) {
+        errorElement2.innerText = "Le mot de passe doit comporter au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.";
+        password2.value = '';
+        confirmpass2.value = ''; // Clear the confirmation password field
+    } else if (password2.value !== confirmpass2.value) {
+        errorElement3.innerText = 'le mot de passe ne correspond pas';
+        confirmpass2.value = ''; // Clear the confirmation password field
+    } else {
+        // If the password is valid, show the alert and clear the fields
+        alert("Inscription confirmée");
+        password2.value = '';
+        confirmpass2.value = '';
+        email2.value = '';
+        nom.value = '';
+        errorElement2.innerText = '';
+        errorElement3.innerText = '';
+        errorname.innerText = '';
+    }
+});
+
+
+        function isPasswordValid(pass) {
+        // Password must have at least 8 characters, one uppercase letter, and one lowercase letter
+        var minLength = 8;
+        var hasUpperCase = /[A-Z]/.test(pass);
+        var hasLowerCase = /[a-z]/.test(pass);
+
+        return pass.length >= minLength && hasUpperCase && hasLowerCase;
+    }
+        function isNameValid(name) {
+        var validNamePattern = /^[A-Za-z\s]+$/;
+
+        return validNamePattern.test(name);
+    }
+     </script>
 </body>
 </html>
