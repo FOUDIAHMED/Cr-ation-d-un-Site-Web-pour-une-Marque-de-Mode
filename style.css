@@ -122,6 +122,8 @@ html{
     left: 0;
 }
 
+
+
 .main-background{
     background: url(pexels-andrea-piacquadio-3755706.jpg);
     background-size: cover;
@@ -199,7 +201,7 @@ letter-spacing: 3px;
     align-items: center;
     margin-left: 10%;
     margin-right: 10%;
-    width: 90%; /* Change the width to a percentage */
+    width: 90%; 
     max-width: 900px;
     position: relative;
     display: grid;
@@ -209,7 +211,7 @@ letter-spacing: 3px;
 .wrapper {
     background-color: #ffffff;
     margin-bottom: 20px;
-    padding: 15px 20px; /* Adjust padding for smaller screens */
+    padding: 15px 20px; 
     border-radius: 5px;
     box-shadow: 0 15px 25px rgba(0, 0, 50, 0.2);
 }
